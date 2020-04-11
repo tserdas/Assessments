@@ -172,7 +172,7 @@ namespace Assessments
         {
             int appleCount = 0;
             int orangeCount = 0;
-            for (int i =0;i<apples.GetLength(0);i++)
+            for (int i = 0; i < apples.GetLength(0); i++)
             {
                 apples[i] = apples[i] + a;
             }
@@ -182,10 +182,10 @@ namespace Assessments
             }
             for (int i = 0; i < apples.GetLength(0); i++)
             {
-                if (s<=apples[i] && apples[i] <= t)
+                if (s <= apples[i] && apples[i] <= t)
                 {
                     appleCount += 1;
-                } 
+                }
             }
             for (int i = 0; i < oranges.GetLength(0); i++)
             {
@@ -200,7 +200,7 @@ namespace Assessments
         public static string kangaroo(int x1, int v1, int x2, int v2)
         {
             string result = "NO";
-            for(int i=1;i<=10000;i++)
+            for (int i = 1; i <= 10000; i++)
             {
                 x1 += v1;
                 x2 += v2;
@@ -220,12 +220,12 @@ namespace Assessments
 
             for (int firstDiv = a.Last(); firstDiv <= b.First(); firstDiv++)
             {
-                for (int i=0;i<a.Count;i++)
+                for (int i = 0; i < a.Count; i++)
                 {
                     if (firstDiv % a[i] == 0 && firstDivList.IndexOf(firstDiv) == -1)
                         counter += 1;
                 }
-                if (counter==a.Count)
+                if (counter == a.Count)
                 {
                     firstDivList.Add(firstDiv);
                 }
@@ -245,6 +245,123 @@ namespace Assessments
                 counter = 0;
             }
             return exactDivList.Count;
+        }
+        public static int[] cellCompete(int[] states, int days)
+        {
+            int[] result = new int[states.GetLength(0)];
+            while (days > 0)
+            {
+                for (int i = 0; i < states.GetLength(0); i++)
+                {
+                    if (i == 0)
+                    {
+                        if (0 == states[i + 1])
+                            result[i] = 0;
+                        else
+                            result[i] = 1;
+                    }
+                    else if (i == states.GetLength(0) - 1)
+                    {
+                        if (0 == states[i - 1])
+                            result[i] = 0;
+                        else
+                            result[i] = 1;
+                    }
+                    else
+                    {
+                        if (states[i - 1] == states[i + 1])
+                            result[i] = 0;
+                        else
+                            result[i] = 1;
+                    }
+                }
+                days--;
+                for (int x = 0; x < result.GetLength(0); x++)
+                {
+                    states[x] = result[x];
+                }
+            }
+            return result;
+        }
+        public static int generalizedGCD(int num, int[] arr)
+        {
+            int index = arr.GetLength(0) - 1;
+            int result = 0;
+            int counter = 0;
+
+            while (num > 0)
+            {
+                for (int x = 0; x < arr.GetLength(0); x++)
+                {
+                    if (arr[x] % arr[index] == 0)
+                        counter += 1;
+                }
+                result = counter == arr.GetLength(0) ? arr[index] : 1;
+                counter = 0;
+                index -= 1;
+                num--;
+            }
+            return result;
+        }
+        public static int getMultiples(int first, int second, int maxVal)
+        {
+            int firstMultiple = 0;
+            int secondMultiple = 0;
+            int commonMultiple = 0;
+            for (int i = first; i < maxVal; i++)
+            {
+                if (i % first == 0 && i % second == 0)
+                    commonMultiple += i;
+                else if (i % first == 0)
+                    firstMultiple += i;
+                else if (i % second == 0)
+                    secondMultiple += i;
+            }
+            return firstMultiple + secondMultiple + commonMultiple;
+        }
+
+        //public static long fibonacciSeries(int maxVal)
+        //{
+        //    long result = 0;
+        //    List<int> fibSeries = new List<int>();
+        //    fibSeries.Add(1);
+        //    fibSeries.Add(2);
+        //    for (int x = 2; x < maxVal; x++)
+        //    {
+        //        fibSeries.Add(fibSeries[x - 2] + fibSeries[x - 1]);
+        //    }
+        //    foreach (var item in fibSeries)
+        //    {
+        //        if (item % 2 == 0)
+        //            result += item;
+        //    }
+
+        //    return result;
+        //}
+
+        public static int[] breakingRecords(int[] scores)
+        {
+            int[] result = new int[2];
+            int bestScore = scores.First();
+            int worstScore = scores.First();
+            int bestScoreCnt = 0;
+            int worstScoreCnt = 0;
+            for (int i = 1; i < scores.GetLength(0); i++)
+            {
+                if (scores[i] > bestScore)
+                {
+                    bestScore = scores[i];
+                    bestScoreCnt += 1;
+                }
+                else if (scores[i] < worstScore)
+                {
+                    worstScore = scores[i];
+                    worstScoreCnt += 1;
+                }
+            }
+            result[0] = bestScoreCnt;
+            result[1] = worstScoreCnt;
+            return result;
         }
     }
 }

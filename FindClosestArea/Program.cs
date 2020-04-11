@@ -73,6 +73,30 @@ namespace Assessments
             //List<int> b = new List<int>() { 16, 32,96 };
             //Methods.getTotalX(a, b);
             #endregion
+            #region cellComplete
+            //int[] example = { 1, 1, 1, 0, 1, 1, 1, 1 };
+            //int[] result2 = new int[8];
+            //result2 = Methods.cellCompete(example, 2);
+            //for (int i = 0; i < result2.GetLength(0); i++)
+            //{
+            //    Console.WriteLine(result2[i].ToString());
+            //}
+            #endregion
+            #region generalizedGCD
+            //int[] example = { 2, 4, 6, 8, 10 };
+            //Methods.generalizedGCD(example.GetLength(0), example);
+            #endregion
+            #region getMultiples            
+            //Console.WriteLine(Methods.getMultiples(3, 5, 1000).ToString());
+            #endregion
+            #region fibonacciSeries
+            //Console.WriteLine(Methods.fibonacciSeries(4000000).ToString());
+            #endregion
+            #region breakingRecords
+            int[] example = { 10, 5, 20, 20, 4, 5, 2, 25, 1 };
+            int[] result = new int[2];
+            result = Methods.breakingRecords(example);
+            #endregion
         }
     }
 }
