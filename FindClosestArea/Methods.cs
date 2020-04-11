@@ -146,34 +146,105 @@ namespace Assessments
         public static int birthdayCakeCandles(int[] ar)
         {
             int maxLength = ar.Max();
-            return ar.Count(it => it == maxLength);             
+            return ar.Count(it => it == maxLength);
         }
         public string timeConversion(string s)
         {
-            string result=string.Empty;
+            string result = string.Empty;
             string date = "01/01/2017 ";
             DateTime d = Convert.ToDateTime(date + s);
             result = String.Format("{0:HH:mm:ss}", d);
             return result;
         }
-        public static int formingMagicSquare(int[][] s)
+        public static List<int> gradingStudents(List<int> grades)
         {
-            int result = 0;
-            int index = 0;
-            int[] multipleVal;
-            for (int i = 0; i < s.GetLength(0); i++)
+            for (int i = 0; i < grades.Count; i++)
             {
-                for(int y;y<s.GetLength(1);y++)
+                if (grades[i] >= 38)
                 {
-
-                    if (s.Count(x => x == s[i][y]) > 1)
-                    {
-                        multipleVal[index] = s[i];
-                        index++;
-                    }
+                    if ((5 - grades[i] % 5) < 3)
+                        grades[i] = (grades[i] + (5 - grades[i] % 5));
+                }
+            }
+            return grades;
+        }
+        public static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges)
+        {
+            int appleCount = 0;
+            int orangeCount = 0;
+            for (int i =0;i<apples.GetLength(0);i++)
+            {
+                apples[i] = apples[i] + a;
+            }
+            for (int i = 0; i < oranges.GetLength(0); i++)
+            {
+                oranges[i] = oranges[i] + b;
+            }
+            for (int i = 0; i < apples.GetLength(0); i++)
+            {
+                if (s<=apples[i] && apples[i] <= t)
+                {
+                    appleCount += 1;
+                } 
+            }
+            for (int i = 0; i < oranges.GetLength(0); i++)
+            {
+                if (s <= oranges[i] && oranges[i] <= t)
+                {
+                    orangeCount += 1;
+                }
+            }
+            Console.WriteLine(appleCount.ToString());
+            Console.WriteLine(orangeCount.ToString());
+        }
+        public static string kangaroo(int x1, int v1, int x2, int v2)
+        {
+            string result = "NO";
+            for(int i=1;i<=10000;i++)
+            {
+                x1 += v1;
+                x2 += v2;
+                if (x1 == x2)
+                {
+                    result = "YES";
+                    break;
                 }
             }
             return result;
+        }
+        public static int getTotalX(List<int> a, List<int> b)
+        {
+            List<int> firstDivList = new List<int>();
+            List<int> exactDivList = new List<int>();
+            int counter = 0;
+
+            for (int firstDiv = a.Last(); firstDiv <= b.First(); firstDiv++)
+            {
+                for (int i=0;i<a.Count;i++)
+                {
+                    if (firstDiv % a[i] == 0 && firstDivList.IndexOf(firstDiv) == -1)
+                        counter += 1;
+                }
+                if (counter==a.Count)
+                {
+                    firstDivList.Add(firstDiv);
+                }
+                counter = 0;
+            }
+            for (int y = 0; y < firstDivList.Count; y++)
+            {
+                for (int x = 0; x < b.Count; x++)
+                {
+                    if (b[x] % firstDivList[y] == 0 && exactDivList.IndexOf(firstDivList[y]) == -1)
+                        counter += 1;
+                }
+                if (counter == b.Count)
+                {
+                    exactDivList.Add(firstDivList[y]);
+                }
+                counter = 0;
+            }
+            return exactDivList.Count;
         }
     }
 }

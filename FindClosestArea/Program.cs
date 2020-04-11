@@ -56,6 +56,23 @@ namespace Assessments
             #region formingMagicSquare
             int[,] formingMagicSquare = { { 4, 8, 2 }, { 4, 5, 7 }, { 6, 1, 6 } };
             #endregion
+            #region gradingStudents
+            //List<int> gradingStudents = new List<int> {23,80,96,18,73,78,60,60,15,45,15,10,5,46,87,33,60,14,71};
+            //List<int> result = Methods.gradingStudents(gradingStudents);
+            //Console.WriteLine("sonuc");
+            #endregion
+            #region countApplesAndOranges
+            //int[] apples = { -2, 2, 1 };
+            //int[] oranges= { 5, -6 };
+            //Methods.countApplesAndOranges(7, 11, 5, 15, apples, oranges);
+            #endregion
+            #region kangaroo
+            #endregion
+            #region getTotalX
+            //List<int> a = new List<int>(){2,4 };
+            //List<int> b = new List<int>() { 16, 32,96 };
+            //Methods.getTotalX(a, b);
+            #endregion
         }
     }
 }
