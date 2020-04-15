@@ -97,6 +97,15 @@ namespace Assessments
             int[] result = new int[2];
             result = Methods.breakingRecords(example);
             #endregion
+
+            string input = "Jack and Jill went to the market to buy bread and cheese. Cheese is Jack's and Jill's favorite food.";
+            List<string> exclude = new List<string>();
+            exclude.Add("and");
+            exclude.Add("he");
+            exclude.Add("the");
+            exclude.Add("to");
+            exclude.Add("is");
+            Methods.retrieveMostFrequentlyUsedWords(input, exclude);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -362,6 +363,48 @@ namespace Assessments
             result[0] = bestScoreCnt;
             result[1] = worstScoreCnt;
             return result;
+        }
+        public static List<String> retrieveMostFrequentlyUsedWords(String helpText, List<String> wordsToExclude)    
+        {
+            helpText = helpText.Replace("'", " ");
+            helpText = helpText.Replace(".", "");
+            helpText = helpText.Replace(",", "");
+            helpText = helpText.Replace("?", "");
+            helpText = helpText.Replace("!", "");
+            List<string> result = new List<string>();
+            List<string> helpTextList = helpText.ToLower().Split(' ').ToList();
+            List<string> helpTextListMostUsed = new List<string>();
+            var helpTestUsage = new Dictionary<string, int>();
+            foreach (string value in helpTextList)
+            {
+                if (helpTestUsage.TryGetValue(value, out int count))
+                {
+                    helpTestUsage[value] = count + 1;
+                }
+                else
+                {
+                    helpTestUsage.Add(value, 1);
+                }
+            }
+            helpTestUsage = helpTestUsage.Where(x => x.Value > 1).ToDictionary(x => x.Key, x => x.Value);
+            helpTextListMostUsed = helpTestUsage.Keys.ToList();
+            for (int i = 0; i < helpTextListMostUsed.Count; i++)
+            {
+                if (!wordsToExclude.Contains(helpTextListMostUsed[i]))
+                    result.Add(helpTextListMostUsed[i]);
+            }
+            return result;
+        }
+        public List<string> reorderLines(int logFileSize, string[] logLines)
+        {
+            List<string> logLinesList = new List<string>();
+            Array.Sort(logLines, StringComparer.Ordinal);
+            for (int i = 0; i < logLines.GetLength(0); i++)
+            {
+                logLinesList.Add(logLines[i]);
+            }
+            logLinesList.Sort();
+            return logLinesList;
         }
     }
 }
