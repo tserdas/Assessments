@@ -6,7 +6,7 @@ namespace Assessments
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             #region FindClosestArea
             //int[,] locations = { { 2, 7 }, { 2, 4 }, { 2, 8 }, { 2, 6 }, { 2, 3 }, { 2, 5 } };
@@ -98,14 +98,83 @@ namespace Assessments
             result = Methods.breakingRecords(example);
             #endregion
 
-            string input = "Jack and Jill went to the market to buy bread and cheese. Cheese is Jack's and Jill's favorite food.";
-            List<string> exclude = new List<string>();
-            exclude.Add("and");
-            exclude.Add("he");
-            exclude.Add("the");
-            exclude.Add("to");
-            exclude.Add("is");
-            Methods.retrieveMostFrequentlyUsedWords(input, exclude);
+            //string input = "Jack and Jill went to the market to buy bread and cheese. Cheese is Jack's and Jill's favorite food.";
+            //List<string> exclude = new List<string>();
+            //exclude.Add("and");
+            //exclude.Add("he");
+            //exclude.Add("the");
+            //exclude.Add("to");
+            //exclude.Add("is");
+            //Methods.retrieveMostFrequentlyUsedWords(input, exclude);
+
+            int[] arr = { 64, 25, 12, 22, 11 };
+            GeekforGeeksMethods.selectionSort(arr);
+
+        }
+    }
+    
+    static class GeekforGeeksMethods
+    {
+        public static int linearSearch (int[] arr,int x)
+        {
+            int result = -1;
+            for(int i=0;i<arr.Length;i++)
+            {
+                if (arr[i] == x)
+                    result = i;
+            }
+            return result;
+        }
+        public static int binarySearch (int[] arr,int l,int r,int x)
+        {
+            int result=-1;
+            if (r >= l)
+            {
+
+                int mid = l+ (r-1)/2;
+                if (arr[mid] == x)
+                    result = mid;
+                else if (arr[mid] > x)
+                    binarySearch(arr, l, mid - 1, x);
+                else
+                    binarySearch(arr, l, mid + 1, x);
+            }
+            return result;
+        }
+        public static int[] selectionSort(int[] arr)
+        {
+            int n = arr.Length;
+
+            // One by one move boundary of unsorted subarray 
+            for (int i = 0; i < n - 1; i++)
+            {
+                // Find the minimum element in unsorted array 
+                int min_idx = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arr[j] < arr[min_idx])
+                        min_idx = j;
+
+                // Swap the found minimum element with the first 
+                // element 
+                int temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
+            }
+            return arr;
+        }
+        public static int[] bubbleSort(int[] arr)
+        {
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // swap temp and arr[i] 
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+            return arr;
         }
     }
 }
